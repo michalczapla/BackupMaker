@@ -5,8 +5,10 @@ Program copies only new or changed files (keeping folder structure).
 
 ### Usage
 
-Define all reqested data in profiles/profile1.profile file.
+Define all reqested data in `profiles/*.profile` files.
+For now not excludes are possible.
 
 ### History
 
-Version 0.1.* allows only one profile.
+_Version 0.2.* allows multiple profiles.\
+Version 0.1.* allows only one profile._

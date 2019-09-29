@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProfileReader{
@@ -16,12 +18,13 @@ public class ProfileReader{
     private final String destinationHeaderProfileFile = "DESTINATION";
     private final String descriptionHeaderProfileFile = "DESCRIPTION";
 
+
     public ProfileReader(Path profilePath) {
         this.profilePath = profilePath;
-        readProfile();
     }
 
-    private void readProfile() {
+
+    public Profile readProfile() {
         String input;
         try (BufferedReader bufReader = new BufferedReader(new FileReader(profilePath.toString()))){
             String description="", source="", destination="";
@@ -41,6 +44,7 @@ public class ProfileReader{
                 Path destinationPath = Paths.get(destination).normalize();
 
                 this.profile = new Profile(description,sourcePath,destinationPath);
+                return this.profile;
             }
 
         } catch (FileNotFoundException fe) {
@@ -48,6 +52,7 @@ public class ProfileReader{
         } catch (IOException | ArrayIndexOutOfBoundsException e) {
             System.out.println("Fatal error occurred trying opening profile.");
         }
+        return null;
     }
 
     public Profile getProfile() throws FileNotFoundException{
